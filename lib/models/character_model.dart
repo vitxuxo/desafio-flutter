@@ -2,20 +2,18 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:desafio_flutter/models/species_model.dart';
-
 class CharactersModel {
   int? id;
   String? nome;
-  int? altura;
-  double? peso;
+  String? altura;
+  String? peso;
   String? corCabelo;
   String? corPele;
   String? corOlhos;
   String? anoNascimento;
   String? genero;
   String? planetaNatal;
-  List<SpeciesModel> especies;
+  List<String>? especies;
 
   CharactersModel({
     this.id,
@@ -43,7 +41,7 @@ class CharactersModel {
       'anoNascimento': anoNascimento,
       'genero': genero,
       'planetaNatal': planetaNatal,
-      'especies': especies.map((x) => x.toMap()).toList(),
+      'especies': especies,
     };
   }
 
@@ -59,8 +57,7 @@ class CharactersModel {
       anoNascimento: map['anoNascimento'],
       genero: map['genero'],
       planetaNatal: map['planetaNatal'],
-      especies: List<SpeciesModel>.from(
-          map['especies']?.map((x) => SpeciesModel.fromMap(x))),
+      especies: List<String>.from(map['especies'] ?? [""]),
     );
   }
 
@@ -100,5 +97,10 @@ class CharactersModel {
         genero.hashCode ^
         planetaNatal.hashCode ^
         especies.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'CharactersModel(id: $id, nome: $nome, altura: $altura, peso: $peso, corCabelo: $corCabelo, corPele: $corPele, corOlhos: $corOlhos, anoNascimento: $anoNascimento, genero: $genero, planetaNatal: $planetaNatal, especies: $especies)';
   }
 }

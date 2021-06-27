@@ -90,4 +90,9 @@ class SpeciesModel {
         lingua.hashCode ^
         planetaNatal.hashCode;
   }
+
+  @override
+  String toString() {
+    return 'SpeciesModel(nome: $nome, classificacao: $classificacao, desiginacao: $desiginacao, altura: $altura, corPele: $corPele, corCabelo: $corCabelo, corOlhos: $corOlhos, tempoDeVida: $tempoDeVida, lingua: $lingua, planetaNatal: $planetaNatal)';
+  }
 }

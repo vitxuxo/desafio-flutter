@@ -8,19 +8,15 @@ class ApiClient extends Disposable {
 
   ApiClient(this._dioClient) {
     _dioClient.options.baseUrl = "https://swapi.dev";
+    _headers = Options(headers: {"Content-Type": "application/json"});
   }
 
-  Future<List<CharactersModel>?> getCharacters() async {
+  Future<CharactersModel?> getCharacters() async {
     Response response = await sendGet(rota: "/api/people/");
     if (response.statusCode == 200) {
-      return List<CharactersModel>.from(
-        response.data?.map(
-          (x) => CharactersModel.fromMap(x),
-        ),
-      );
-    } else {
-      return null;
+      return CharactersModel.fromMap(response.data!);
     }
+    return null;
   }
 
   Future<Response> sendGet({required String rota}) async {

@@ -4,7 +4,7 @@ import 'package:desafio_flutter/models/character_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CharacterBloc extends BlocBase {
-  final _characters = BehaviorSubject<List<CharactersModel>?>();
+  final _characters = BehaviorSubject<CharactersModel?>();
 
   @override
   void dispose() {
@@ -18,7 +18,7 @@ class CharacterBloc extends BlocBase {
     getCharacters();
   }
 
-  Stream<List<CharactersModel>?> get characters => _characters.stream;
+  Stream<CharactersModel?>? get characters => _characters.stream;
 
   Future getCharacters() async {
     var usuario = await _repo.getCharacters();
