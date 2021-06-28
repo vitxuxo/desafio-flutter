@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: StreamBuilder<CharactersModel?>(
+      body: StreamBuilder<CharactersModel>(
           stream: widget.bloc!.characters,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
