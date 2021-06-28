@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:desafio_flutter/models/species_model.dart';
+
 class CharactersModel {
   int? id;
   String? nome;
@@ -13,7 +15,7 @@ class CharactersModel {
   String? anoNascimento;
   String? genero;
   String? planetaNatal;
-  List<String>? especies;
+  List<SpeciesModel>? especies = [];
 
   CharactersModel({
     this.id,
@@ -41,7 +43,7 @@ class CharactersModel {
       'anoNascimento': anoNascimento,
       'genero': genero,
       'planetaNatal': planetaNatal,
-      'especies': especies,
+      'especies': especies?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -57,7 +59,8 @@ class CharactersModel {
       anoNascimento: map['anoNascimento'],
       genero: map['genero'],
       planetaNatal: map['planetaNatal'],
-      especies: List<String>.from(map['especies'] ?? [""]),
+      especies: List<SpeciesModel>.from(
+          map['especies']?.map((x) => SpeciesModel.fromMap(x))),
     );
   }
 

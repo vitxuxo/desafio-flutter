@@ -1,13 +1,18 @@
-import 'package:desafio_flutter/app/modules/app_module.dart';
+import 'package:flutter/material.dart';
+
 import 'package:desafio_flutter/models/character_model.dart';
 import 'package:desafio_flutter/shared/blocs/character_bloc.dart';
 import 'package:desafio_flutter/widget/card_character_widget.dart';
-import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({
+    Key? key,
+    required this.title,
+    this.bloc,
+  }) : super(key: key);
   final String title;
-  final bloc = AppModule.to.getBloc<CharacterBloc>();
+  CharacterBloc? bloc;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -21,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: StreamBuilder<CharactersModel?>(
-          stream: widget.bloc.characters,
+          stream: widget.bloc!.characters,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
