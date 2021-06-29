@@ -4,7 +4,8 @@ import 'package:desafio_flutter/models/character_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CharacterBloc extends BlocBase {
-  final _characters = PublishSubject<CharactersModel>();
+  final _characters = PublishSubject<List<CharactersModel>>();
+  String _proximaPagina = "";
 
   @override
   void dispose() {
@@ -18,11 +19,13 @@ class CharacterBloc extends BlocBase {
     getCharacters();
   }
 
-  Stream<CharactersModel> get characters => _characters.stream;
+  Stream<List<CharactersModel>> get characters => _characters.stream;
 
   Future getCharacters() async {
     var usuario = await _repo.getCharacters();
-    _characters.add(usuario!);
+    _characters.add(usuario!.results!);
     return usuario;
   }
+
+  Future getProximaPagina() async {}
 }

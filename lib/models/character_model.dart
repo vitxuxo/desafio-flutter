@@ -34,33 +34,33 @@ class CharactersModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'nome': nome,
-      'altura': altura,
-      'peso': peso,
-      'corCabelo': corCabelo,
-      'corPele': corPele,
-      'corOlhos': corOlhos,
-      'anoNascimento': anoNascimento,
-      'genero': genero,
-      'planetaNatal': planetaNatal,
-      'especies': especies?.map((x) => x.toMap()).toList(),
+      'name': nome,
+      'height': altura,
+      'mass': peso,
+      'hair_color': corCabelo,
+      'skin_color': corPele,
+      'eye_color': corOlhos,
+      'birth_year': anoNascimento,
+      'gender': genero,
+      'homeworld': planetaNatal,
+      'species': especies?.map((x) => x.toMap()).toList(),
     };
   }
 
   factory CharactersModel.fromMap(Map<String, dynamic> map) {
     return CharactersModel(
       id: map['id'],
-      nome: map['nome'],
-      altura: map['altura'],
-      peso: map['peso'],
-      corCabelo: map['corCabelo'],
-      corPele: map['corPele'],
-      corOlhos: map['corOlhos'],
-      anoNascimento: map['anoNascimento'],
-      genero: map['genero'],
-      planetaNatal: map['planetaNatal'],
+      nome: map['name'],
+      altura: map['height'],
+      peso: map['mass'],
+      corCabelo: map['hair_color'],
+      corPele: map['skin_color'],
+      corOlhos: map['eye_color'],
+      anoNascimento: map['birth_year'],
+      genero: map['gender'],
+      planetaNatal: map['homeworld'],
       especies: List<SpeciesModel>.from(
-          map['especies']?.map((x) => SpeciesModel.fromMap(x))),
+          map['species']?.map((x) => SpeciesModel.fromMap(x))),
     );
   }
 

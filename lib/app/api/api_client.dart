@@ -1,6 +1,5 @@
+import 'package:desafio_flutter/models/characters_response.dart';
 import 'package:dio/dio.dart';
-
-import 'package:desafio_flutter/models/character_model.dart';
 
 class ApiClient {
   Dio _dioClient;
@@ -14,11 +13,11 @@ class ApiClient {
     _dioClient.options.receiveTimeout = 3000;
   }
 
-  Future<CharactersModel?> getCharacters() async {
+  Future<CharactersResponse?> getCharacters() async {
     try {
       response = await _dioClient.get("/api/people/");
       if (response!.statusCode == 200) {
-        return CharactersModel.fromMap(response!.data!);
+        return CharactersResponse.fromMap(response!.data!);
       }
     } catch (e) {
       return null;
